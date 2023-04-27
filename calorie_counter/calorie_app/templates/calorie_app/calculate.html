@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <title>Home Calorie</title>
+</head>
+
+<body>
+    {% if consumed %}
+    <div class="container-fluid" style="background-color: #ecf0f5;">
+        <div class="row py-2">
+            <div class="col-md-8 offset-md-3">
+                <h1 class="mt-2">Calories consumed by you</h1>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid" style="background: white;">
+        <div class="container" style="width: 45%;">
+
+            <div class="row mt-5">
+                <div class="col">
+                    <span>
+                        <h4>Total Calories Consumed by you : {{total_calorie}}</h4>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+    {% else %}
+    <div class="container-fluid" style="background-color: #ecf0f5;">
+        <div class="row py-2">
+            <div class="col-md-8 offset-md-4">
+                <h1 class="mt-2">Calories burned by you</h1>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid" style="background: white;">
+        <div class="container" style="width: 45%;">
+
+            <div class="row mt-5">
+                <div class="col">
+                    <span>
+                        <h4>Total Calories burned by you : {{total_calorie}} cal</h4>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="container-fluid mt-3">
+        <div class="container">
+            <h2>Your Calory analysis</h2>
+        </div>
+    </div>
+
+    <div class="container-fluid mt-5">
+        <div class="container">
+            <table class="mydatatable">
+                <thead>
+                    <th>User Email</th>
+                    <th>Calorie Type</th>
+                    <th>Calorie/s</th>
+                    <th>Time</th>
+                </thead>
+                <tbody>
+                    {% for obj in list1 %}
+                    <tr>
+                        <td>{{obj.user_email}}</td>
+                        <td>{{obj.calory_type}}</td>
+                        <td>{{obj.calorie}}</td>
+                        <td>{{obj.created_at}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+    <!-- for select2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
+        integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+        crossorigin="anonymous"></script>
+    <script>
+        $('.mydatatable').DataTable({
+
+        });
+        window.addEventListener('beforeunload', (event) => {
+
+            event.preventDefault();
+
+            event.returnValue = '';
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>

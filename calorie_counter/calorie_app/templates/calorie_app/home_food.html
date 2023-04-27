@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Home Calorie</title>
+</head>
+
+<body>
+    <div class="container-fluid" style="background-color: #ecf0f5;">
+        <div class="row py-2">
+            <div class="col-md-8 offset-md-3">
+                <h1 class="mt-2">Find how much calorie you consumed?</h1>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid" style="background: white;">
+        <div class="container" style="width: 35%;">
+            <form action="{% url 'calorie_calc' %}" method="post">
+                {% csrf_token %}
+                <div class="row mt-3">
+                    <div class="col">
+                        <label for="" class="mt-3">User Email</label>
+                        <input class="form-control" name="usr_mail" type="email" required>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <input class="form-control" name="type_calory" type="text" value="food" style="display: none;" required>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <label for="vegetables" class="mt-3">Select the food</label>
+                        <select name="vegetables" id="vegetables" class="form-select form-control mt-2" multiple>
+                            <option value="" disabled>Choose</option>
+                            {% for food in food_list %}
+                            <option value="{{food.calorie}}">{{food.food_name}}</option>
+                            {% endfor %}
+                        </select>
+
+
+                        <!-- <label for="" class="mt-3">Select the food</label>
+                        <div class="d-flex p-3">
+                            {% for food in food_list %}
+                            <input type="checkbox" name="vegetables" value="{{food.calorie}}" style="margin-left: 15px;"> {{food.food_name}}
+                            {% endfor %}
+                        </div> -->
+
+                        
+
+                    </div>
+
+                </div>
+                <div class="row mt-3">
+                    <div class="col-2">
+                        <input class="btn btn-primary" type="reset" value="Reset">
+
+                    </div>
+                    <div class="col-2 offset-md-8">
+                        <input class="btn btn-primary" type="submit" value="Submit">
+                    </div>
+                </div>
+                <!-- <div class="row mt-2">
+                    <div class="col">
+                        <label for="">Did You do workout?</label>
+                        <input type="radio" class="mx-2" onclick="calorie_count">
+                    </div>
+                </div> -->
+
+
+
+
+            </form>
+
+
+        </div>
+    </div>
+
+    <!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+
+
+   
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
